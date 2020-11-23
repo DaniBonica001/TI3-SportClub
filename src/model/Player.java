@@ -1,5 +1,5 @@
 package model;
-public class Player extends Employee {
+public class Player extends Employee implements Price{
 	//Atributes
 	private int numberTshirt;
 	private int amountGoals;

@@ -49,7 +49,26 @@ public class Main{
 					}
 				break;
 
-				case 4: System.out.println(objClub.seeTeamsInfo());
+				case 4: 
+					System.out.println("Desea: "+
+										"\n1.Ver la informacion de un equipo en particular"+
+										"\n2.Ver la informacion de todos los equipos");
+					int whichTeam=lector.nextInt();
+					lector.nextLine();
+
+					if (whichTeam==1){
+						System.out.println("\n1.EquipoA"+
+										"\n2.EquipoB");
+						int which=lector.nextInt();
+						lector.nextLine();
+
+						System.out.println(objClub.seeTeamInfo(which));						
+					}else if (whichTeam==2){
+						System.out.println(objClub.seeTeamsInfo());						
+					}else {
+						System.out.println("Opcion incorrecta");
+					}
+				
 				break;
 
 				case 5: System.out.println(objClub.completeInformation());

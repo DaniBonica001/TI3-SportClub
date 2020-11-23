@@ -205,7 +205,7 @@ public class Club{
 		String message=" ";
 		boolean exit=false;
 		for (int i=0;i<workers.size() && !exit;i++){
-			if (workers.get(i)!=null){
+			if (workers.get(i)!=null && workers.get(i).getMood().equalsIgnoreCase("activo")){
 				message+=workers.get(i).toString();
 			}else{
 				message+="No hay empleados contratados";
@@ -226,6 +226,23 @@ public class Club{
 		}
 
 		return message;		
+	}
+
+
+	public String seeTeamInfo(int team){
+		String message="";
+
+		if (team==1){
+			if (teams[0]!=null){
+				message+=teams[0].toString();
+			}
+		}else if (team==2){
+			if (teams[1]!=null){
+				message+=teams[1].toString();
+			}
+		}	
+
+		return message;	
 	}
 
 	public String seeTeamsInfo(){
@@ -346,7 +363,7 @@ public class Club{
 		String message="";
 
 		if (findEmployee==null){
-			message="El entrenador no esta contratado";
+			message="El jugador no esta contratado";
 		}else{
 			if (findEmployee instanceof Player){
 				Player objPlayer=(Player)findEmployee;
@@ -369,7 +386,7 @@ public class Club{
 		String message="";
 
 		if (findEmployee==null){
-			message="El entrenador no esta contratado";
+			message="El jugador no esta contratado";
 		}else{
 			if (findEmployee instanceof Player){
 				Player objPlayer=(Player)findEmployee;

@@ -1,5 +1,5 @@
 package model;
-public class MainCoach extends Coach  {
+public class MainCoach extends Coach implements Price {
 	//Atributes
 	private int numberTeamsInCharge;
 	private int championshipAchieved;
