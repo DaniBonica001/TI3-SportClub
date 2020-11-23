@@ -14,7 +14,7 @@ public class Club{
 	//Relations
 	private ArrayList<Employee> workers;
 	private Team [] teams;
-	private Coach[][]offices;
+	private String[][]offices;
 
 	//Methods
 	public Club(String name, String nit, String creationDate){
@@ -25,7 +25,7 @@ public class Club{
 		teams = new Team[AMOUNT_TEAMS];
 		teams[0]= new Team("EquipoA");
 		teams[1]= new Team("EquipoB");
-		offices = new Coach[ROWS][COLUMNS];
+		offices = new String[ROWS][COLUMNS];
 	}
 	//Setters and getters
 	public void setName(String name){
@@ -74,13 +74,23 @@ public class Club{
 		return index;
 	}
 
-	public String hireEmployee(String name, String id, double salary,int numberTshirt, int amountGoals, int averageGrade, String position, int team){
+	public String hireEmployee(String name, String id, double salary,int numberTshirt, int amountGoals, int averageGrade, int position, int team){
 		Employee findEmployee=findEmployee(id);
 		Player objPlayer=null;		
 		String add="";
-		String message="";
+		String message="Se ha contratado el jugador exitosamente";
 		if (findEmployee==null){
-			workers.add(new Player (name,id,salary,"activo",numberTshirt,amountGoals,averageGrade,position));
+			if (position==1){
+				workers.add(new Player (name,id,salary,"activo",numberTshirt,amountGoals,averageGrade,Position.PORTERO));
+			}else if (position==2){
+				workers.add(new Player (name,id,salary,"activo",numberTshirt,amountGoals,averageGrade,Position.DEFENSA));
+			}else if (position==3){
+				workers.add(new Player (name,id,salary,"activo",numberTshirt,amountGoals,averageGrade,Position.VOLANTE));
+			}else if (position==4){
+				workers.add(new Player (name,id,salary,"activo",numberTshirt,amountGoals,averageGrade,Position.DELANTERO));
+			}else{
+				message="No se pudo llenar la posicion del jugador. Por tanto, no se contrato.";
+			}			
 
 			int index= findEmployeePosition(id);
 
@@ -96,7 +106,7 @@ public class Club{
 				}
 			}			
 
-			message="Se ha contratado el jugador exitosamente";
+			
 		}else{
 			message="Error. El jugador ya esta contratado";		
 		}
@@ -245,12 +255,153 @@ public class Club{
 				"\n**********EQUIPOS***********"+
 				"\n"+teamsInfo+
 				"\n****************************";
+	}
+
+	public String locateCoaches(){
+		String message="";
+		ArrayList<Coach> coaches= new ArrayList<Coach>();
 
 
+		for (int i=0;i<workers.size();i++){
+			if (workers.get(i) instanceof MainCoach){
+				MainCoach objCoach=(MainCoach)workers.get(i);
+				coaches.add(objCoach);
+			}else if (workers.get(i) instanceof Assistant){
+				Assistant objAssistant=(Assistant)workers.get(i);
+				coaches.add(objAssistant);
+			}
+		}
 
+		
+
+		int index=0;
+
+		for (int x=0;x<offices.length;x+=4){
+			for (int y=0;y<offices[0].length;y+=2){
+				if (offices[x][y]==null){
+					offices[x][y]=coaches.get(index).getName();
+
+					if (index<coaches.size()){
+						index++;
+					}
+
+					
+				}
+			}
+		}
+
+		for (int z=1;z<offices[0].length;z+=2){
+			if (offices[2][z]==null){
+				offices[2][z]=coaches.get(index).getName();
+
+				if (index<coaches.size()){
+						index++;
+				}
+				
+			}
+		}
+
+		for (int a=0;a<offices.length;a++){
+			for (int b=0;b<offices[0].length;b++){
+				if (offices[a][b]==null){
+					offices[a][b]=" ";
+				}
+			}
+		}
+
+		for (int c=0;c<offices.length;c++){
+			for (int d=0;d<offices[0].length;d++){
+				
+				message+="["+offices[c][d]+"]"+" ";				
+			}
+			message+="";
+		}
+
+		return message;
 
 	}
+
+
+	public String calculatePriceCoach(String id){
+		Employee findEmployee=findEmployee(id);
+		double price=0;
+		String message="";
+
+		if (findEmployee==null){
+			message="El entrenador no esta contratado";
+		}else{
+			if (findEmployee instanceof MainCoach){
+				MainCoach objMainCoach=(MainCoach)findEmployee;
+				price=objMainCoach.calculateMarketPrice(findEmployee);
+				message="El precio de mercado del entrenador "+findEmployee.getName()+" es de: "+price;
+			}
+		}
+
+		return message;
+	}
+
+	public String calculatePricePlayer(String id){
+		Employee findEmployee=findEmployee(id);
+		double price=0;
+		String message="";
+
+		if (findEmployee==null){
+			message="El entrenador no esta contratado";
+		}else{
+			if (findEmployee instanceof Player){
+				Player objPlayer=(Player)findEmployee;
+				price=objPlayer.calculateMarketPrice(findEmployee);
+				if (price!=0){
+					message="El precio de mercado del jugador "+findEmployee.getName()+" es de: "+price;
+				}else{
+					message="Error.No se pudo calcular el precio del jugador";
+				}
+				
+			}
+		}
+		return message;
+	}
  
+
+ 	public String calculateLevelPlayer(String id){
+		Employee findEmployee=findEmployee(id);
+		double level=0;
+		String message="";
+
+		if (findEmployee==null){
+			message="El entrenador no esta contratado";
+		}else{
+			if (findEmployee instanceof Player){
+				Player objPlayer=(Player)findEmployee;
+				level=objPlayer.calculateStarsLevel();
+				if (level!=0){
+					message="El nivel del jugador "+findEmployee.getName()+" es de: "+level;
+				}else{
+					message="Error.No se pudo calcular el nivel del jugador";
+				}
+				
+			}
+		}
+		return message;
+	}
+
+	public String calculateLevelCoach(String id){
+		Employee findEmployee=findEmployee(id);
+		double level=0;
+		String message="";
+
+		if (findEmployee==null){
+			message="El entrenador no esta contratado";
+		}else{
+			if (findEmployee instanceof MainCoach){
+				MainCoach objMainCoach=(MainCoach)findEmployee;
+				level=objMainCoach.calculateStarsLevel();
+				message="El nivel del entrenador "+findEmployee.getName()+" es de: "+level;
+			}
+		}
+
+		return message;
+	}
 
 
 }

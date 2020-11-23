@@ -17,6 +17,9 @@ public class Main{
 								"\n3.Ver informacion de los empleados"+
 								"\n4.Ver la informacion de los equipos"+
 								"\n5.Ver toda la informacion del club"+
+								"\n6.Ubicar los entrenadores en oficinas"+
+								"\n7.Calcular el precio de mercado para entrenadores principales o jugadores"+
+								"\n8.Calcular el nivel para entrenadores principales o jugadores"+
 								"\n0.Para salir");
 			int option=lector.nextInt();
 			lector.nextLine();
@@ -50,8 +53,16 @@ public class Main{
 				break;
 
 				case 5: System.out.println(objClub.completeInformation());
+				break;				
+
+				case 6: System.out.println(objClub.locateCoaches());
 				break;
-				
+
+				case 7: calculatePrice();
+				break;
+
+				case 8: calculateLevel();
+				break;
 
 				case 0: System.out.println("¡Bye!");
 				menu=false;
@@ -115,8 +126,14 @@ public class Main{
 			int average= lector.nextInt();
 			lector.nextLine();
 
-			System.out.println("Ingrese la posicion del jugador");
-			String position= lector.nextLine();
+			System.out.println("Seleccione la posicion del jugador"+
+								"\n1.Portero"+
+								"\n2.Defensa"+
+								"\n3.Volante"+
+								"\n4.Delantero");
+			int position= lector.nextInt();
+			lector.nextLine();
+
 
 			String message="";
 			message= objClub.hireEmployee(name,id,salary,number,goals,average,position,team);
@@ -198,6 +215,57 @@ public class Main{
 		String message="";
 		message=objClub.fireEmployee(name,id);
 		System.out.println(message);
+	}
+
+
+	public static void calculatePrice(){
+		String message="";
+		System.out.println("Seleccione una opcion"+
+							"\n1.Calcular el precio de mercado de un jugador"+
+							"\n2.Calcular el precio de mercado de un entrenador principal");
+		int option= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese el id del empleado que desea calcular el precio");
+		String id= lector.nextLine();
+
+		switch(option){
+			case 1:
+			message=objClub.calculatePricePlayer(id);
+			System.out.println(message);
+			break;
+
+			case 2: 
+			message=objClub.calculatePriceCoach(id);
+			System.out.println(message);
+			break;
+		}		
+		
+	}
+
+	public static void calculateLevel(){
+		String message="";
+		System.out.println("Seleccione una opcion"+
+							"\n1.Calcular el nivel de un jugador"+
+							"\n2.Calcular el nivel de un entrenador principal");
+		int option= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese el id del empleado que desea conocer el nivel");
+		String id= lector.nextLine();
+
+		switch(option){
+			case 1:
+			message=objClub.calculateLevelPlayer(id);
+			System.out.println(message);
+			break;
+
+			case 2: 
+			message=objClub.calculateLevelCoach(id);
+			System.out.println(message);
+			break;
+		}		
+		
 	}
 
 

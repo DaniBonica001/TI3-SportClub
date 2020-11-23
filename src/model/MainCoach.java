@@ -1,5 +1,5 @@
 package model;
-public class MainCoach extends Coach {
+public class MainCoach extends Coach  {
 	//Atributes
 	private int numberTeamsInCharge;
 	private int championshipAchieved;
@@ -34,6 +34,17 @@ public class MainCoach extends Coach {
 				"\n****************************";
 	}
 
-	//public double calculateMarketPrice();
-	//public int calculateStarsLevel();
+	public double calculateMarketPrice(Employee coach){
+		double salary= coach.getSalary();
+		int years=getExperienceYears();
+
+		double price=(salary*10)+(years*100)+(championshipAchieved*50);
+
+		return price;
+
+	}
+	public double calculateStarsLevel(){
+		double level= 5+(championshipAchieved/10);
+		return level;
+	}
 }
