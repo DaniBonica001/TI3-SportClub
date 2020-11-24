@@ -33,6 +33,10 @@ public class Team{
 		this.headCoach=headCoach;
 	}
 
+	public MainCoach getHeadCoach(){
+		return headCoach;
+	}
+
 	public Player findPlayer(String id){
 		Player find=null;
 		boolean exit=false;
@@ -110,6 +114,43 @@ public class Team{
 		}
 
 	return message;
+	}
+
+
+	public String firePlayer(Player player){
+		String message="";
+		boolean exit=false;
+		for (int i=0;i<players.length && !exit;i++){
+			if (players[i].getId().equalsIgnoreCase(player.getId())){
+				players[i]=null;
+				exit=true;
+				message="Se ha eliminado al jugador del equipo";
+			}
+		}
+
+		if (exit==false){
+			message="No se ha eliminado al jugador del equipo";
+		}
+
+		return message;
+
+	}
+
+	public String fireAssistant(Assistant assistant){
+		String message="";
+		boolean exit=false;
+		for (int i=0;i<assistants.length;i++){
+			if (assistants[i].getId().equalsIgnoreCase(assistant.getId())){
+				assistants[i]=null;
+				exit=true;
+				message="Se ha eliminado al asistente del equipo";
+			}
+		}
+
+		if (exit==false){
+			message="No se ha eliminado al asistente  dell equipo";
+		}
+		return message;
 	}
 
 	public String toString(){

@@ -43,20 +43,8 @@ public class Player extends Employee implements Price{
 		return position;
 	}
 
-	public String toString(){
-		String message="";
-		message+=super.toString();
-		return message+
-				"\n**Numero de camiseta: "+numberTshirt+
-				"\n**Cantidad de goles que ha marcado en el club: "+amountGoals+
-				"\n**Calificacion promedio: "+averageGrade+
-				"\n**Posicion: "+position+
-				"\n****************************";
-	}
-
-
-	public double calculateMarketPrice(Employee player){
-		double salary=player.getSalary();
+	public double calculateMarketPrice(){
+		double salary=getSalary();
 		double price=0;
 
 		if (position==Position.PORTERO){
@@ -87,6 +75,21 @@ public class Player extends Employee implements Price{
 		}
 
 		return level;
+	}
+
+	public String toString(){
+		String message="";
+		double level=calculateStarsLevel();
+		double price=calculateMarketPrice();
+		message+=super.toString();
+		return message+
+				"\n**Numero de camiseta: "+numberTshirt+
+				"\n**Cantidad de goles que ha marcado en el club: "+amountGoals+
+				"\n**Calificacion promedio: "+averageGrade+
+				"\n**Posicion: "+position+
+				"\n**Precio de mercado: "+price+
+				"\n**Nivel como estrella: "+level+
+				"\n****************************";
 	}
 
 }

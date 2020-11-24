@@ -1,13 +1,14 @@
 package model;
+import java.util.*;
 public class Assistant extends Coach{
 	//Atributes 
 	private boolean player;
-	private Experticia experticia;
+	private ArrayList<Experticia> experticia;
 	//Methods
-	public Assistant(String name, String id, double salary, String mood, int years, boolean player, Experticia exper){
+	public Assistant(String name, String id, double salary, String mood, int years, boolean player, ArrayList<Experticia> exper){
 		super(name,id,salary,mood,years);
 		this.player=player;
-		experticia=exper;
+		experticia=exper;		
 	}
 
 	//Setters and getters
@@ -18,19 +19,35 @@ public class Assistant extends Coach{
 		return player;
 	}
 
-	public void setExperticia(Experticia experticia){
+	public void setExperticia(ArrayList<Experticia> experticia){
 		this.experticia=experticia;
 	}
-	public Experticia getExperticia(){
+	public ArrayList<Experticia> getExperticia(){
 		return experticia;
 	}
 
 	public String toString(){
+		boolean exit=false;
 		String message="";
 		message+=super.toString();
+		String messageExper="";
+
+		for (int i=0;i<experticia.size();i++){
+			for (int j=0;j<experticia.size() &&!exit;j++){
+				if (i!=j && experticia.get(i)==experticia.get(j)){
+					experticia.remove(experticia.get(i));
+					exit=true;
+				}
+			}		
+		}
+
+		for (int x=0;x<experticia.size();x++){
+			messageExper+=experticia.get(x).name()+", ";
+		}
+
 		return message+
 				"\n**Fue jugador: "+player+
-				"\n**Experticia: "+experticia+
+				"\n**Experticia: "+messageExper+
 				"\n****************************";
 	}
 }

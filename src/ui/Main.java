@@ -178,12 +178,22 @@ public class Main{
 					int teams= lector.nextInt();
 					lector.nextLine();
 
-					System.out.println("Ingrese la cantidad de campeonatos que ha logrado");
-					int championships= lector.nextInt();
-					lector.nextLine();
+					boolean exit=true;
+					ArrayList<String>championshipsAchieved= new ArrayList<String>();
+
+					while (exit){
+						System.out.println("Ingrese el nombre de los campeonatos que ha ganado O Ingrese 0 para contratar el entrenador");
+						String championships= lector.nextLine();
+
+						if (championships.equalsIgnoreCase("0")){
+							exit=false;
+						}else{
+							championshipsAchieved.add(championships);
+						}
+					}			
 
 					
-					message=objClub.hireEmployee(name,id,salary,years,teams,championships,team);
+					message=objClub.hireEmployee(name,id,salary,years,teams,championshipsAchieved,team);
 					System.out.println(message);
 					break;
 
@@ -202,15 +212,30 @@ public class Main{
 						player=false;
 					}
 
-					System.out.println("Ingrese la experticia del nuevo asistente tecnico:"+
-										"\n1.Ofensivo"+
-										"\n2.Defensivo"+
-										"\n3.Posesion del balon"+
-										"\n4.Jugadas de laboratorio");
-					int experticia= lector.nextInt();
+					System.out.println("Ingrese la cantidad de  experticias del nuevo asistente tecnico:");
+					int cantExperticias=lector.nextInt();
 					lector.nextLine();
 
-					message=objClub.hireEmployee(name,id,salary,years,player,experticia,team);
+					int[] experticias= new int [cantExperticias];
+
+					for (int i=0;i<experticias.length;i++){
+
+						System.out.println("Ingrese la experticia del nuevo asistente tecnico:"+
+											"\n1.Ofensivo"+
+											"\n2.Defensivo"+
+											"\n3.Posesion del balon"+
+											"\n4.Jugadas de laboratorio"+
+											"\n5.Entrenador de arqueros"+
+											"\n6.Entrenador de defensas");
+						int experticia= lector.nextInt();
+						lector.nextLine();
+
+						experticias[i]=experticia;
+						
+					}
+
+
+					message=objClub.hireEmployee(name,id,salary,years,player,experticias,team);
 					System.out.println(message);
 					break;
 
@@ -231,8 +256,14 @@ public class Main{
 		System.out.println("Ingrese el id del empleado que sera despedido");
 		String id= lector.nextLine();
 
+		System.out.println("Ingrese a que equipo va a pertener el empleado"+
+								"\n1.EquipoA"+
+								"\n2.EquipoB");
+		int team= lector.nextInt();
+		lector.nextLine();
+
 		String message="";
-		message=objClub.fireEmployee(name,id);
+		message=objClub.fireEmployee(name,id,team);
 		System.out.println(message);
 	}
 

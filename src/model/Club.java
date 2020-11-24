@@ -114,7 +114,7 @@ public class Club{
 		return message+" Y "+add;
 	}
 
-	public String hireEmployee(String name, String id, double salary,int years, int teamsInCharge, int championships,int team){
+	public String hireEmployee(String name, String id, double salary,int years, int teamsInCharge, ArrayList<String> championships,int team){
 		Employee findEmployee=findEmployee(id);
 		MainCoach objMainCoach=null;
 		String add="Se añadio el entrenador al equipo";
@@ -128,9 +128,9 @@ public class Club{
 			if (index!=-1 && workers.get(index) instanceof MainCoach){
 				objMainCoach=(MainCoach) workers.get(index);
 
-				if (team==1){
+				if (team==1 && teams[0].getHeadCoach()==null){
 					teams[0].setHeadCoach(objMainCoach);
-				}else if (team==2){
+				}else if (team==2 && teams[1].getHeadCoach()==null){
 					teams[1].setHeadCoach(objMainCoach);
 				}else{
 					add="Error. Opcion incorrecta. No se pudo añadir el entrenador al equipo";
@@ -145,25 +145,43 @@ public class Club{
 		return message+" Y "+add;
 	}
 
-	public String hireEmployee(String name, String id, double salary,int years, boolean player, int experticia,int team){
+	public String hireEmployee(String name, String id, double salary,int years, boolean player, int[] experticia,int team){
 		Employee findEmployee=findEmployee(id);
 		Assistant objAssistant=null;
+		ArrayList<Experticia> experticias= new ArrayList<Experticia>();
+
 		String add="";
 		String message="Se ha contratado el entrenador exitosamente";
+
+		for (int i=0;i<experticia.length;i++){
+			switch (experticia[i]){
+
+				case 1: experticias.add(Experticia.OFENSIVO);
+				break;
+
+				case 2:	experticias.add(Experticia.DEFENSIVO);
+				break;
+
+				case 3:	experticias.add(Experticia.POSESION);
+				break;	
+
+				case 4:	experticias.add(Experticia.JUGADAS_LABORATORIO);
+				break;
+
+				case 5:	experticias.add(Experticia.ENTRENADOR_ARQUEROS);
+				break;
+
+				case 6:	experticias.add(Experticia.ENTRENADOR_DEFENSAS);
+				break;
+
+			}
+			
+		}
 		
 		if (findEmployee==null){
-			if (experticia==1){
-				workers.add(new Assistant (name,id,salary,"activo",years,player,Experticia.OFENSIVO));
-			}else if (experticia==2){
-				workers.add(new Assistant (name,id,salary,"activo",years,player,Experticia.DEFENSIVO));
-			}else if (experticia==3){
-				workers.add(new Assistant (name,id,salary,"activo",years,player,Experticia.POSESION));
-			}else if (experticia==4){
-				workers.add(new Assistant (name,id,salary,"activo",years,player,Experticia.JUGADAS_LABORATORIO));
-			}else{
-				message="No se puedo llenar el campo de experticia del asistente. Por tanto, no se contrato";
-			}
 
+			workers.add(new Assistant (name,id,salary,"activo",years,player,experticias));
+		
 			int index= findEmployeePosition(id);	
 
 			if (index!=-1 && workers.get(index) instanceof Assistant){
@@ -186,18 +204,39 @@ public class Club{
 	}
 
 
-	public String fireEmployee(String name,String id){
+	public String fireEmployee(String name,String id,int team){
 		Employee findEmployee=findEmployee(id);
 		String message="";
+		String message2="";
 
 		if (findEmployee!=null){
 			findEmployee.setMood("inactivo");
+
+			if (team==1 && findEmployee instanceof Player){
+				Player objPlayer=(Player)findEmployee;
+				message2=teams[0].firePlayer(objPlayer);
+			}else if (team==2 && findEmployee instanceof Player){
+				Player objPlayer=(Player)findEmployee;
+				message2=teams[1].firePlayer(objPlayer);
+			}else if (team==1 && findEmployee instanceof Assistant){
+				Assistant objAssistant=(Assistant)findEmployee;
+				message2=teams[0].fireAssistant(objAssistant);
+			}else if (team==2 && findEmployee instanceof Assistant){
+				Assistant objAssistant=(Assistant)findEmployee;
+				message2=teams[1].fireAssistant(objAssistant);
+			}else if (team==1 && findEmployee instanceof MainCoach){
+				MainCoach objCoach=null;
+				teams[0].setHeadCoach(objCoach);
+				message2="Se ha despedido el entrenador principal";
+			}
+
+		
 			message="Se ha despedido a "+findEmployee.getName();			
 		}else{
 			message="Error. No se puede despedir a un empleado que no está contratado";
 		}
 
-		return message;
+		return message+" Y "+message2;
 	}
 
 
@@ -349,7 +388,7 @@ public class Club{
 		}else{
 			if (findEmployee instanceof MainCoach){
 				MainCoach objMainCoach=(MainCoach)findEmployee;
-				price=objMainCoach.calculateMarketPrice(findEmployee);
+				price=objMainCoach.calculateMarketPrice();
 				message="El precio de mercado del entrenador "+findEmployee.getName()+" es de: "+price;
 			}
 		}
@@ -367,7 +406,7 @@ public class Club{
 		}else{
 			if (findEmployee instanceof Player){
 				Player objPlayer=(Player)findEmployee;
-				price=objPlayer.calculateMarketPrice(findEmployee);
+				price=objPlayer.calculateMarketPrice();
 				if (price!=0){
 					message="El precio de mercado del jugador "+findEmployee.getName()+" es de: "+price;
 				}else{
