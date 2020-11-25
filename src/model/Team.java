@@ -16,7 +16,7 @@ public class Team{
 	//Methods 
 	public Team(String nam){
 		name=nam;
-		//headCoach=coach;
+		headCoach=null;
 		players= new Player[AMOUNT_PLAYERS];
 		assistants= new Assistant [AMOUNT_ASSISTANTS];
 		lineups= new ArrayList<Aligment>();
@@ -156,6 +156,7 @@ public class Team{
 	public String toString(){
 		String message1="";
 		String message2="";
+		String coachName="";
 
 		for (int i=0;i<players.length;i++){
 			if (players[i]!=null){
@@ -169,11 +170,16 @@ public class Team{
 			}			
 		}
 
-		
+		if (headCoach!=null){
+			coachName=headCoach.getName();
+		}else if (headCoach==null){
+			coachName= "null";
+		}
+
 
 		return "\n****************************"+
 				"\n**Nombre: "+name+
-				"\n**Entrenador principal: "+headCoach+
+				"\n**Entrenador principal: "+coachName+
 				"\n**Jugadores: "+message1+
 				"\n**Asistentes: "+message2+
 				"\n****************************";

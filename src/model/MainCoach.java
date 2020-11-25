@@ -46,7 +46,7 @@ public class MainCoach extends Coach implements Price {
 
 		for (int i=0;i<championshipAchieved.size();i++){
 			for (int j=0;j<championshipAchieved.size() &&!exit;j++){
-				if (i!=j && championshipAchieved.get(i)==championshipAchieved.get(j)){
+				if (i!=j && championshipAchieved.get(i).equalsIgnoreCase(championshipAchieved.get(j))){
 					championshipAchieved.remove(championshipAchieved.get(i));
 					exit=true;
 				}

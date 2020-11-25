@@ -228,6 +228,11 @@ public class Club{
 				MainCoach objCoach=null;
 				teams[0].setHeadCoach(objCoach);
 				message2="Se ha despedido el entrenador principal";
+			}else if (team==2 && findEmployee instanceof MainCoach){
+				MainCoach objCoach=null;
+				teams[1].setHeadCoach(objCoach);
+				message2="Se ha despedido el entrenador principal";
+
 			}
 
 		
