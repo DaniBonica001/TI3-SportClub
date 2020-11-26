@@ -14,7 +14,7 @@ public class Club{
 	//Relations
 	private ArrayList<Employee> workers;
 	private Team [] teams;
-	private String[][]offices;
+	private Coach[][]offices;
 
 	//Methods
 	public Club(String name, String nit, String creationDate){
@@ -24,8 +24,7 @@ public class Club{
 		workers= new ArrayList<Employee>();
 		teams = new Team[AMOUNT_TEAMS];
 		teams[0]= new Team("EquipoA");
-		teams[1]= new Team("EquipoB");
-		offices = new String[ROWS][COLUMNS];
+		teams[1]= new Team("EquipoB");		
 	}
 	//Setters and getters
 	public void setName(String name){
@@ -319,63 +318,60 @@ public class Club{
 	}
 
 	public String locateCoaches(){
+		int counter=0;
+		int index=0;
 		String message="";
+		boolean exit=false;
 		ArrayList<Coach> coaches= new ArrayList<Coach>();
+
+		offices=new Coach[ROWS][COLUMNS];
 
 
 		for (int i=0;i<workers.size();i++){
-			if (workers.get(i) instanceof MainCoach){
+			if (workers.get(i) instanceof MainCoach && workers.get(i).getMood().equalsIgnoreCase("activo")){
 				MainCoach objCoach=(MainCoach)workers.get(i);
 				coaches.add(objCoach);
-			}else if (workers.get(i) instanceof Assistant){
+			}else if (workers.get(i) instanceof Assistant && workers.get(i).getMood().equalsIgnoreCase("activo")){
 				Assistant objAssistant=(Assistant)workers.get(i);
 				coaches.add(objAssistant);
 			}
 		}
 
-		
 
-		int index=0;
+		for (int x=0;x<offices.length && !exit;x+=2){
+			for (int y=0;y<offices[0].length && !exit;y+=2){
 
-		for (int x=0;x<offices.length;x+=4){
-			for (int y=0;y<offices[0].length;y+=2){
-				if (offices[x][y]==null){
-					offices[x][y]=coaches.get(index).getName();
+				if (x==2 && counter<=coaches.size()){					
+					offices[x][y+1]=coaches.get(index);
+					index++;
+					counter++;
 
-					if (index<coaches.size()){
+				}else {
+
+					if (offices[x][y]==null && counter<=coaches.size()){
+						offices[x][y]=coaches.get(index);
 						index++;
+						counter++;						
 					}
-
-					
 				}
+
+				if (counter==coaches.size()){
+					exit=true;
+				}
+
+			
 			}
 		}
 
-		for (int z=1;z<offices[0].length;z+=2){
-			if (offices[2][z]==null){
-				offices[2][z]=coaches.get(index).getName();
-
-				if (index<coaches.size()){
-						index++;
-				}
-				
-			}
-		}
-
-		for (int a=0;a<offices.length;a++){
-			for (int b=0;b<offices[0].length;b++){
-				if (offices[a][b]==null){
-					offices[a][b]=" ";
+		for (int j=0;j<offices.length;j++){
+			for (int k=0;k<offices[0].length;k++){
+				if (offices[j][k]!=null){
+					message+="["+offices[j][k].getName()+"]";
+				}else if (offices[j][k]==null){
+					message+="[ ]";
 				}
 			}
-		}
-
-		for (int c=0;c<offices.length;c++){
-			for (int d=0;d<offices[0].length;d++){
-				
-				message+="["+offices[c][d]+"]"+" ";				
-			}
-			message+="";
+			message+="\n";
 		}
 
 		return message;

@@ -12,6 +12,7 @@ public class Team{
 	private MainCoach headCoach;
 	private Assistant[]assistants;
 	private ArrayList<Aligment> lineups;
+	private Player[][]lockerRoom;
 
 	//Methods 
 	public Team(String nam){

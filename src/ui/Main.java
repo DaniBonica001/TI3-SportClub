@@ -256,7 +256,7 @@ public class Main{
 		System.out.println("Ingrese el id del empleado que sera despedido");
 		String id= lector.nextLine();
 
-		System.out.println("Ingrese a que equipo va a pertener el empleado"+
+		System.out.println("Ingrese a que equipo va pertenecia el empleado"+
 								"\n1.EquipoA"+
 								"\n2.EquipoB");
 		int team= lector.nextInt();
