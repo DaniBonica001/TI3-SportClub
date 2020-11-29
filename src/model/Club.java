@@ -245,15 +245,14 @@ public class Club{
 
 
 	public String seeEmployeesInfo(){
-		String message=" ";
-		boolean exit=false;
-		for (int i=0;i<workers.size() && !exit;i++){
+		String message="";
+		for (int i=0;i<workers.size();i++){
 			if (workers.get(i)!=null && workers.get(i).getMood().equalsIgnoreCase("activo")){
 				message+=workers.get(i).toString();
-			}else{
-				message+="No hay empleados contratados";
-				exit=true;
 			}			
+		}
+		if (message==""){
+			message="No hay empleados contratados";
 		}
 		return message;
 	}
@@ -375,6 +374,22 @@ public class Club{
 		}
 
 		return message;
+
+	}
+
+
+
+	public String locatePlayers(int team){
+		String message="";
+
+		if (team==1){
+			message=teams[0].locatePlayers();
+		}else if (team==2){
+			message=teams[1].locatePlayers();
+		}
+
+		return message;
+
 
 	}
 

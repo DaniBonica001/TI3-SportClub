@@ -4,6 +4,8 @@ public class Team{
 	//Constants
 	public final static int AMOUNT_PLAYERS=25;
 	public final static int AMOUNT_ASSISTANTS=3;
+	public final static int ROWS=7;
+	public final static int COLUMNS=6;
 	//Atributes 
 	private String name;
 
@@ -12,7 +14,7 @@ public class Team{
 	private MainCoach headCoach;
 	private Assistant[]assistants;
 	private ArrayList<Aligment> lineups;
-	private Player[][]lockerRoom;
+	private Player[][]lockerRoomPlayers;
 
 	//Methods 
 	public Team(String nam){
@@ -153,6 +155,78 @@ public class Team{
 		}
 		return message;
 	}
+
+	public String locatePlayers(){
+		String message="";
+		boolean exit=false;
+		int counter=0;
+		int index=0;
+		String names="Se quedaron sin vestidor: ";
+
+		
+		List<Player> playersList= Arrays.asList(players);
+
+		Collections.shuffle(playersList);
+	
+
+		lockerRoomPlayers= new Player[ROWS][COLUMNS];
+
+		for (int k=0;k<lockerRoomPlayers.length;k++){
+			for (int j=0;j<lockerRoomPlayers[0].length && !exit;j+=2){
+
+				if (k%2!=0 && counter<=playersList.size() ){
+					lockerRoomPlayers[k][j+1]=playersList.get(index);
+					counter++;
+					index++;
+					
+				}else if (lockerRoomPlayers[k][j]==null && counter<=playersList.size()){
+					lockerRoomPlayers[k][j]=playersList.get(index);
+					counter++;
+					index++;
+					
+				}
+
+				if (counter==playersList.size()){
+					exit=true;
+				}else if (counter==21){
+					exit=true;
+					for (int a=index+1;a<playersList.size();a++){
+						if (playersList.get(a)!=null){
+							names+=playersList.get(a).getName()+", ";
+						}
+
+					}
+				}
+
+
+
+			}
+		}
+
+		for (int a=0;a<lockerRoomPlayers.length;a++){
+			for (int b=0;b<lockerRoomPlayers[0].length;b++){
+				if (lockerRoomPlayers[a][b]!=null){
+					message+="["+lockerRoomPlayers[a][b].getName()+"]";
+				}else if (lockerRoomPlayers[a][b]==null){
+					message+="[ ]";
+				}
+			}
+			message+="\n";
+		}
+
+		return message+" Y "+names;
+
+		
+
+
+	}
+
+
+
+
+
+
+
 
 	public String toString(){
 		String message1="";

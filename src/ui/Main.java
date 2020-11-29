@@ -18,8 +18,9 @@ public class Main{
 								"\n4.Ver la informacion de los equipos"+
 								"\n5.Ver toda la informacion del club"+
 								"\n6.Ubicar los entrenadores en oficinas"+
-								"\n7.Calcular el precio de mercado para entrenadores principales o jugadores"+
-								"\n8.Calcular el nivel para entrenadores principales o jugadores"+
+								"\n7.Ubicar a los jugadores de los vestidores"+
+								"\n8.Calcular el precio de mercado para entrenadores principales o jugadores"+
+								"\n9.Calcular el nivel para entrenadores principales o jugadores"+
 								"\n0.Para salir");
 			int option=lector.nextInt();
 			lector.nextLine();
@@ -77,10 +78,13 @@ public class Main{
 				case 6: System.out.println(objClub.locateCoaches());
 				break;
 
-				case 7: calculatePrice();
+				case 7: locatePlayers();
 				break;
 
-				case 8: calculateLevel();
+				case 8: calculatePrice();
+				break;
+
+				case 9: calculateLevel();
 				break;
 
 				case 0: System.out.println("¡Bye!");
@@ -256,7 +260,7 @@ public class Main{
 		System.out.println("Ingrese el id del empleado que sera despedido");
 		String id= lector.nextLine();
 
-		System.out.println("Ingrese a que equipo va pertenecia el empleado"+
+		System.out.println("Ingrese a que equipo pertenecia el empleado"+
 								"\n1.EquipoA"+
 								"\n2.EquipoB");
 		int team= lector.nextInt();
@@ -266,6 +270,23 @@ public class Main{
 		message=objClub.fireEmployee(name,id,team);
 		System.out.println(message);
 	}
+
+	public static void locatePlayers(){
+		System.out.println("Ingrese que equipo quiere ubicar en los vestidores"+
+							"\n1.EquipoA"+
+							"\n2.EquipoB");
+		int team= lector.nextInt();
+		lector.nextLine();
+
+		String message="";
+		message=objClub.locatePlayers(team);
+		System.out.println(message);
+
+
+	}
+
+
+
 
 
 	public static void calculatePrice(){
