@@ -479,6 +479,38 @@ public class Club{
 		return message;
 	}
 
+	public String addLineUps(int team,String date, int frills, int forwards, int defenses,int tactic){
+		String message="";
+		int sum=0;
+		if (frills<=7 && forwards<=7 && defenses<=7){
+			sum=frills+forwards+defenses;
+
+			if (sum==10){
+
+				message="Su formacion es: "+defenses+"-"+forwards+"-"+frills;
+				if (team==1){
+					message+="\n"+teams[0].addLineUps(date,frills,forwards,defenses,tactic);					
+				}else if (team==2){
+					message+="\n"+teams[1].addLineUps(date,frills,forwards,defenses,tactic);			
+				}else{
+					message="Error.Opcion incorrecta";
+				}
+
+			}else if (sum<10){
+				message="Error. Faltan jugadores.";
+			}else if (sum>10){
+				message="Error. Sobran jugadores.";
+			}
+
+			
+
+		}else{
+			message="Error. No se puede poner mas de 7 jugadores en una linea";
+		}
+
+		return message;
+	}
+
 
 }
                     

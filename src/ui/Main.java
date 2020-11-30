@@ -21,6 +21,7 @@ public class Main{
 								"\n7.Ubicar a los jugadores de los vestidores"+
 								"\n8.Calcular el precio de mercado para entrenadores principales o jugadores"+
 								"\n9.Calcular el nivel para entrenadores principales o jugadores"+
+								"\n10.Agregar alineaciones a un equipo"+
 								"\n0.Para salir");
 			int option=lector.nextInt();
 			lector.nextLine();
@@ -85,6 +86,9 @@ public class Main{
 				break;
 
 				case 9: calculateLevel();
+				break;
+
+				case 10: addLineUps();
 				break;
 
 				case 0: System.out.println("¡Bye!");
@@ -335,6 +339,43 @@ public class Main{
 			break;
 		}		
 		
+	}
+
+
+	public static void addLineUps(){
+		System.out.println("Ingrese que equipo quiere ubicar en los vestidores"+
+							"\n1.EquipoA"+
+							"\n2.EquipoB");
+		int team= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese la fecha de la alineacion");
+		String date = lector.nextLine();
+
+		System.out.println("Ingrese la cantidad de volantes");
+		int frills= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese la cantidad de delanteros");
+		int forwards= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese la cantidad de defensas");
+		int defenses= lector.nextInt();
+		lector.nextLine();
+
+		System.out.println("Ingrese que tipo de tactica se usa en esta alineacion"+
+							"\n1.Posesion"+
+							"\n2.Contraataque"+
+							"\n3.Presion alta"+
+							"\n4.Por defecto");
+		int tactic= lector.nextInt();
+		lector.nextLine();
+
+		String message="";
+		message=objClub.addLineUps(team,date,frills,forwards,defenses,tactic);
+		System.out.println(message);
+
 	}
 
 

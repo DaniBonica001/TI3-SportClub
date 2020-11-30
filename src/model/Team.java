@@ -224,11 +224,11 @@ public class Team{
 		boolean exit=false;
 		int counter=0;
 		int index=0;
-		
+
 		List<Player> playersList= Arrays.asList(players);
 
 		Collections.shuffle(playersList);
-		
+
 
 		lockerRoomPlayers= new Player[ROWS][COLUMNS1];
 
@@ -271,6 +271,48 @@ public class Team{
 
 		return message;
 	}
+
+
+	public int findAligment(String date){
+		int index=-1;
+
+		for (int i=0;i<lineups.size();i++){
+			if (lineups.get(i).getDate().equalsIgnoreCase(date));
+				index=i;
+		}
+
+		return index;
+	}
+
+	public String addLineUps(String date, int frills, int forwards, int defenses, int tactic){
+		String message="";
+
+
+		if (tactic==1){
+			lineups.add(new Aligment (date,frills,forwards,defenses,Tactic.POSESION));
+		}else if (tactic==2){
+			lineups.add(new Aligment (date,frills,forwards,defenses,Tactic.CONTRAATAQUE));
+		}else if (tactic==3){
+			lineups.add(new Aligment (date,frills,forwards,defenses,Tactic.PRESION_ALTA));
+		}else if (tactic==4){
+			lineups.add(new Aligment (date,frills,forwards,defenses,Tactic.POR_DEFECTO));
+		}else{
+			message="No se pudo llenar el tipo de tactica. Por tanto, no se añadio la alineacion";
+		}
+
+		int index = findAligment(date);
+		message=lineups.get(index).locateLineUp(frills,forwards,defenses);
+		return message;
+	}
+
+
+
+
+
+
+
+
+
 
 	public String toString(){
 		String message1="";
