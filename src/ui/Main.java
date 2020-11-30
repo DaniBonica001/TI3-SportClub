@@ -274,7 +274,8 @@ public class Main{
 	public static void locatePlayers(){
 		System.out.println("Ingrese que equipo quiere ubicar en los vestidores"+
 							"\n1.EquipoA"+
-							"\n2.EquipoB");
+							"\n2.EquipoB"+
+							"\n3.Ambos");
 		int team= lector.nextInt();
 		lector.nextLine();
 
@@ -284,9 +285,6 @@ public class Main{
 
 
 	}
-
-
-
 
 
 	public static void calculatePrice(){

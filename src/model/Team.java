@@ -6,6 +6,7 @@ public class Team{
 	public final static int AMOUNT_ASSISTANTS=3;
 	public final static int ROWS=7;
 	public final static int COLUMNS=6;
+	public final static int COLUMNS1=7;
 	//Atributes 
 	private String name;
 
@@ -156,7 +157,7 @@ public class Team{
 		return message;
 	}
 
-	public String locatePlayers(){
+	public String locatePlayers1(){
 		String message="";
 		boolean exit=false;
 		int counter=0;
@@ -171,7 +172,7 @@ public class Team{
 
 		lockerRoomPlayers= new Player[ROWS][COLUMNS];
 
-		for (int k=0;k<lockerRoomPlayers.length;k++){
+		for (int k=0;k<lockerRoomPlayers.length && !exit;k++){
 			for (int j=0;j<lockerRoomPlayers[0].length && !exit;j+=2){
 
 				if (k%2!=0 && counter<=playersList.size() ){
@@ -215,18 +216,61 @@ public class Team{
 		}
 
 		return message+" Y "+names;
-
-		
-
-
 	}
 
 
+	public String locatePlayers2(){
+		String message="";
+		boolean exit=false;
+		int counter=0;
+		int index=0;
+		
+		List<Player> playersList= Arrays.asList(players);
 
+		Collections.shuffle(playersList);
+		
 
+		lockerRoomPlayers= new Player[ROWS][COLUMNS1];
 
+		for (int k=0;k<lockerRoomPlayers.length && !exit;k++){
+			for (int j=0;j<lockerRoomPlayers[0].length && !exit;j+=2){
 
+				if (k%2!=0 && counter<=playersList.size()){
+					j++;
+					if (j<lockerRoomPlayers[0].length){
+						lockerRoomPlayers[k][j]=playersList.get(index);
+						counter++;
+						index++;
 
+					}
+					
+					
+				}else if (lockerRoomPlayers[k][j]==null && counter<=playersList.size()){
+					lockerRoomPlayers[k][j]=playersList.get(index);
+					counter++;
+					index++;
+					
+				}
+
+				if (counter==playersList.size()){
+					exit=true;				
+				}
+			}
+		}
+
+		for (int a=0;a<lockerRoomPlayers.length;a++){
+			for (int b=0;b<lockerRoomPlayers[0].length;b++){
+				if (lockerRoomPlayers[a][b]!=null){
+					message+="["+lockerRoomPlayers[a][b].getName()+"]";
+				}else if (lockerRoomPlayers[a][b]==null){
+					message+="[ ]";
+				}
+			}
+			message+="\n";
+		}
+
+		return message;
+	}
 
 	public String toString(){
 		String message1="";

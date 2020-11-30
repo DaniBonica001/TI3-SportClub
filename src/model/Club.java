@@ -383,9 +383,13 @@ public class Club{
 		String message="";
 
 		if (team==1){
-			message=teams[0].locatePlayers();
+			message=teams[0].locatePlayers1();
 		}else if (team==2){
-			message=teams[1].locatePlayers();
+			message=teams[1].locatePlayers2();
+		}else if (team==3){
+			message+="Vestidores EquipoA:"+"\n"+teams[0].locatePlayers1()+"\nVestidores EquipoB"+"\n"+teams[1].locatePlayers2();
+		}else{
+			message="Error.Opcion incorrecta";
 		}
 
 		return message;
