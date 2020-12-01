@@ -22,6 +22,8 @@ public class Main{
 								"\n8.Calcular el precio de mercado para entrenadores principales o jugadores"+
 								"\n9.Calcular el nivel para entrenadores principales o jugadores"+
 								"\n10.Agregar alineaciones a un equipo"+
+								"\n11.Ver todas las formaciones de un equipo"+
+								"\n12.Actualizar la informacion de un empleado"+
 								"\n0.Para salir");
 			int option=lector.nextInt();
 			lector.nextLine();
@@ -89,6 +91,12 @@ public class Main{
 				break;
 
 				case 10: addLineUps();
+				break;
+
+				case 11: seeAllLineUps();
+				break;
+
+				case 12: uploadEmployeeInformation();
 				break;
 
 				case 0: System.out.println("¡Bye!");
@@ -343,7 +351,7 @@ public class Main{
 
 
 	public static void addLineUps(){
-		System.out.println("Ingrese que equipo quiere ubicar en los vestidores"+
+		System.out.println("Ingrese a que equipo quiere agregar una alineacion"+
 							"\n1.EquipoA"+
 							"\n2.EquipoB");
 		int team= lector.nextInt();
@@ -376,6 +384,135 @@ public class Main{
 		message=objClub.addLineUps(team,date,frills,forwards,defenses,tactic);
 		System.out.println(message);
 
+	}
+
+	public static void seeAllLineUps(){
+		System.out.println("Ingrese que equipo quiere ver todas sus alineaciones"+
+							"\n1.EquipoA"+
+							"\n2.EquipoB");
+		int team= lector.nextInt();
+		lector.nextLine();
+
+		String message="";
+		message=objClub.seeAllLineUps(team);
+		System.out.println(message);
+
+	}
+
+
+	public static void uploadEmployeeInformation(){
+		String message="";
+
+		System.out.println("Ingrese el ID del empleado que desea actualizar la informacion");
+		String id= lector.nextLine();
+
+		System.out.println("Ingrese el nuevo salario del empleado");
+		double salary=lector.nextDouble();
+		lector.nextLine();
+
+		System.out.println("Ingrese el nuevo estado del empleado");
+		String mood=lector.nextLine();
+
+		System.out.println("ingrese:"+
+							"\n1.Si la persona es un jugador"+
+							"\n2.Si la persona es un entrenador");
+		int option= lector.nextInt();
+		lector.nextLine();
+
+		switch(option){
+			case 1:
+			System.out.println("Ingrese el nuevo numero de camiseta del jugador");
+			int number=lector.nextInt();
+			lector.nextLine();
+
+			System.out.println("Ingrese la cantidad de goles del jugador");
+			int goals=lector.nextInt();
+			lector.nextLine();
+
+			System.out.println("Ingrese la nueva calificacion promedio del jugador");
+			int grade=lector.nextInt();
+			lector.nextLine();
+
+			System.out.println("Seleccione la nueva posicion del jugador"+
+								"\n1.Portero"+
+								"\n2.Defensa"+
+								"\n3.Volante"+
+								"\n4.Delantero");
+			int position= lector.nextInt();
+			lector.nextLine();
+
+			message=objClub.uploadEmployeeInformation(id,salary,mood,number,goals,grade,position);
+			System.out.println(message);
+			break;
+
+			case 2: 
+
+			System.out.println("Ingrese los años de experiencia del entrenador");
+			int years=lector.nextInt();
+			lector.nextLine();
+
+			System.out.println("Ingrese: "+
+								"\n1.Si es un entrenador principal"+
+								"\n2.Si es un asistente tecnico ");
+			int type= lector.nextInt();
+			lector.nextLine();
+
+				switch(type){
+					case 1: 
+
+					System.out.println("Ingrese la cantidad de equipos que ha tenido a cargo el entrenador");
+					int teams= lector.nextInt();
+					lector.nextLine();
+
+					boolean exit=true;
+					ArrayList<String>championshipsAchieved= new ArrayList<String>();
+
+					while (exit){
+						System.out.println("Ingrese el nombre de los campeonatos que ha ganado o ingrese 0 para actualizar la informacion del entrenador");
+						String championships= lector.nextLine();
+
+						if (championships.equalsIgnoreCase("0")){
+							exit=false;
+						}else{
+							championshipsAchieved.add(championships);
+						}
+					}
+
+					message=objClub.uploadEmployeeInformation(id,salary,mood,years,teams,championshipsAchieved);
+					System.ou.println(message);
+					break;
+
+					case 2:
+
+					System.out.println("Ingrese la nueva cantidad de experticias del asistente tecnico:");
+					int cantExperticias=lector.nextInt();
+					lector.nextLine();
+
+					int[] experticias= new int [cantExperticias];
+
+					for (int i=0;i<experticias.length;i++){
+
+						System.out.println("Ingrese la experticia del nuevo asistente tecnico:"+
+											"\n1.Ofensivo"+
+											"\n2.Defensivo"+
+											"\n3.Posesion del balon"+
+											"\n4.Jugadas de laboratorio"+
+											"\n5.Entrenador de arqueros"+
+											"\n6.Entrenador de defensas");
+						int experticia= lector.nextInt();
+						lector.nextLine();
+
+						experticias[i]=experticia;
+						
+					}
+
+					message=objClub.uploadEmployeeInformation(id,salary,mood,years,experticias);
+					System.ou.println(message);
+					break;
+				}
+
+			break;
+		}
 	}
 
 

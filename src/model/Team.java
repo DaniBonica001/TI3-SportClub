@@ -285,7 +285,7 @@ public class Team{
 	}
 
 	public String addLineUps(String date, int frills, int forwards, int defenses, int tactic){
-		String message="";
+		String message="Fecha: "+date;
 
 
 		if (tactic==1){
@@ -301,7 +301,31 @@ public class Team{
 		}
 
 		int index = findAligment(date);
-		message=lineups.get(index).locateLineUp(frills,forwards,defenses);
+		message+="\nTactica: "+lineups.get(index).getTactic().name()+"\n"+lineups.get(index).locateLineUp(frills,forwards,defenses);
+		return message;
+	}
+
+	public String seeAllLineUps(){
+		String message="";
+
+
+		for (int i=0;i<lineups.size();i++){
+
+			message+="Fecha: "+lineups.get(i).getDate()+
+						"\nTactica: "+lineups.get(i).getTactic().name()+
+						"\nFormacion: "+lineups.get(i).getDefenses()+"-"+lineups.get(i).getForwards()+"-"+lineups.get(i).getFrills()+"\n";
+						
+			int [][] lineUpFormation=lineups.get(i).getFormation();
+
+
+			for (int j=0;j<lineUpFormation.length;j++){
+				for (int k=0;k<lineUpFormation[0].length;k++){
+					message+="["+lineUpFormation[j][k]+"]";
+				}
+				message+="\n";
+			}
+		}
+
 		return message;
 	}
 

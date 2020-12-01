@@ -30,11 +30,43 @@ public class Aligment{
 		return  date;
 	}
 
+	public void setDefenses(int defenses){
+		this.defenses=defenses;
+	}
+
+	public int getDefenses(){
+		return defenses;
+	}
+
+	public void setForwards(int forwards){
+		this.forwards=forwards;
+	}
+
+	public int getForwards(){
+		return forwards;
+	}
+
+	public void setFrills(int frills){
+		this.frills=frills;
+	}
+
+	public int getFrills(){
+		return frills;
+	}
+
 	public void setTactic(Tactic tactic){
 		this.tactic=tactic;
 	}
 	public Tactic getTactic(){
 		return  tactic;
+	}
+
+	public void setFormation(int [][]formation){
+		this.formation=formation;
+	}
+
+	public int [][] getFormation(){
+		return formation;
 	}
 
 
@@ -57,13 +89,11 @@ public class Aligment{
 								
 								formation[a][b]=lineUp[i][amountFrills];
 								amountFrills++;
-								//exit=true;				
-
-							}					
-
-							
+								
+							}							
 						}
 					}
+
 				}else if (a==5){
 					for (int d=0;d<lineUp.length;d++){
 						if (forwards==d){
@@ -71,11 +101,8 @@ public class Aligment{
 							if (forward<lineUp[0].length){
 								
 								formation[a][b]=lineUp[d][forward];
-								forward++;
-								//exit=true;							
-
+								forward++;								
 							}
-
 						}
 					}
 					
@@ -86,9 +113,7 @@ public class Aligment{
 							if(def<lineUp[0].length){
 								
 								formation[a][b]=lineUp[e][def];
-								def++;
-								//exit=true;
-								
+								def++;																
 							}
 						}
 					}
@@ -107,10 +132,6 @@ public class Aligment{
 		}
 
 		return message;
-
-
-
-
 	}
 
 

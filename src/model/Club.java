@@ -502,8 +502,6 @@ public class Club{
 				message="Error. Sobran jugadores.";
 			}
 
-			
-
 		}else{
 			message="Error. No se puede poner mas de 7 jugadores en una linea";
 		}
@@ -511,6 +509,132 @@ public class Club{
 		return message;
 	}
 
+	public String seeAllLineUps(int team){
+		String message="";
 
+		if (team==1){
+			message=teams[0].seeAllLineUps();
+		}else if (team==2){
+			message=teams[1].seeAllLineUps();
+		}else{
+			message="Error. Opcion incorrecta";
+		}
+
+		return message;
+
+	}
+
+	public String uploadEmployeeInformacion(String id,double salary,String mood,int number,int goals,int grade,int position){
+		Employee findEmployee=findEmployee(id);
+		String message="";
+
+		if (findEmployee==null){
+			message="Error. El empleado no existe";
+
+		}else{
+			findEmployee.setSalary(salary);
+			findEmployee.setMood(mood);
+			if (findEmployee instanceof Player){
+				Player employeePlayer=(Player)findEmployee;
+				employeePlayer.setNumberTshirt(number);
+				employeePlayer.setAmountGoals(goals);
+				employeePlayer.setAverageGrade(grade);
+
+				if (position==1){
+					employeePlayer.setPosition(Postion.PORTERO);
+				}else if (position==2){
+					employeePlayer.setPosition(Postion.DEFENSA);
+				}else if (position==3){
+					employeePlayer.setPosition(Postion.VOLANTE);
+				}else if (position==4){
+					employeePlayer.setPosition(Postion.DELANTERO);
+				}
+
+				message="Se ha actualizado la informacion del jugador";
+
+			}
+		}
+
+		return message;
+
+	}
+
+	public String uploadEmployeeInformacion(String id,double salary,String mood,int years,ArrayList<String>championshipsAchieved){
+		Employee findEmployee=findEmployee(id);
+		String message="";
+
+		if (findEmployee==null){
+			message="Error. El empleado no existe";
+
+		}else{
+			findEmployee.setSalary(salary);
+			findEmployee.setMood(mood);
+			if (findEmployee instanceof MainCoach){
+				MainCoach employeeMainCoach=(MainCoach)findEmployee;
+				employeeMainCoach.setExperienceYears(years);
+				employeeMainCoach.setChampionshipAchieved(championshipsAchieved);
+
+				message="Se ha actualizado la informacion del entrenador";
+			}
+		}
+		return message;
+	}
+
+	public String uploadEmployeeInformacion(String id,double salary,String mood,int years,int []experticia){
+
+		Employee findEmployee=findEmployee(id);
+		String message="";
+
+		if (findEmployee==null){
+			message="Error. El empleado no existe";
+
+		}else{
+			findEmployee.setSalary(salary);
+			findEmployee.setMood(mood);
+			if (findEmployee instanceof Assistant){
+				Assistant employeeAssistant=(Assistant)findEmployee;
+				employeeAssistant.setExperienceYears(years);
+
+
+				ArrayList<Experticia> experticias= new ArrayList<Experticia>();
+
+				String add="";
+				String message="Se ha contratado el entrenador exitosamente";
+
+				for (int i=0;i<experticia.length;i++){
+					switch (experticia[i]){
+
+						case 1: experticias.add(Experticia.OFENSIVO);
+						break;
+
+						case 2:	experticias.add(Experticia.DEFENSIVO);
+						break;
+
+						case 3:	experticias.add(Experticia.POSESION);
+						break;	
+
+						case 4:	experticias.add(Experticia.JUGADAS_LABORATORIO);
+						break;
+
+						case 5:	experticias.add(Experticia.ENTRENADOR_ARQUEROS);
+						break;
+
+						case 6:	experticias.add(Experticia.ENTRENADOR_DEFENSAS);
+						break;
+
+					}
+
+				}
+
+				employeeAssistant.setExperticia(experticias);
+
+				message="Se ha actualizado la informacion del asistente tecnico";
+				
+			}
+
+		}
+
+		return message;
+	}
 }
                     
