@@ -479,7 +479,7 @@ public class Main{
 					}
 
 					message=objClub.uploadEmployeeInformation(id,salary,mood,years,teams,championshipsAchieved);
-					System.ou.println(message);
+					System.out.println(message);
 					break;
 
 					case 2:
@@ -507,7 +507,7 @@ public class Main{
 					}
 
 					message=objClub.uploadEmployeeInformation(id,salary,mood,years,experticias);
-					System.ou.println(message);
+					System.out.println(message);
 					break;
 				}
 

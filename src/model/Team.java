@@ -328,16 +328,7 @@ public class Team{
 
 		return message;
 	}
-
-
-
-
-
-
-
-
-
-
+	
 	public String toString(){
 		String message1="";
 		String message2="";

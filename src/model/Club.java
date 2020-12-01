@@ -524,7 +524,7 @@ public class Club{
 
 	}
 
-	public String uploadEmployeeInformacion(String id,double salary,String mood,int number,int goals,int grade,int position){
+	public String uploadEmployeeInformation(String id,double salary,String mood,int number,int goals,int grade,int position){
 		Employee findEmployee=findEmployee(id);
 		String message="";
 
@@ -541,13 +541,13 @@ public class Club{
 				employeePlayer.setAverageGrade(grade);
 
 				if (position==1){
-					employeePlayer.setPosition(Postion.PORTERO);
+					employeePlayer.setPosition(Position.PORTERO);
 				}else if (position==2){
-					employeePlayer.setPosition(Postion.DEFENSA);
+					employeePlayer.setPosition(Position.DEFENSA);
 				}else if (position==3){
-					employeePlayer.setPosition(Postion.VOLANTE);
+					employeePlayer.setPosition(Position.VOLANTE);
 				}else if (position==4){
-					employeePlayer.setPosition(Postion.DELANTERO);
+					employeePlayer.setPosition(Position.DELANTERO);
 				}
 
 				message="Se ha actualizado la informacion del jugador";
@@ -559,7 +559,7 @@ public class Club{
 
 	}
 
-	public String uploadEmployeeInformacion(String id,double salary,String mood,int years,ArrayList<String>championshipsAchieved){
+	public String uploadEmployeeInformation(String id,double salary,String mood,int years,int amountTeams,ArrayList<String>championshipsAchieved){
 		Employee findEmployee=findEmployee(id);
 		String message="";
 
@@ -572,6 +572,7 @@ public class Club{
 			if (findEmployee instanceof MainCoach){
 				MainCoach employeeMainCoach=(MainCoach)findEmployee;
 				employeeMainCoach.setExperienceYears(years);
+				employeeMainCoach.setNumberTeamsInCharge(amountTeams);
 				employeeMainCoach.setChampionshipAchieved(championshipsAchieved);
 
 				message="Se ha actualizado la informacion del entrenador";
@@ -580,7 +581,7 @@ public class Club{
 		return message;
 	}
 
-	public String uploadEmployeeInformacion(String id,double salary,String mood,int years,int []experticia){
+	public String uploadEmployeeInformation(String id,double salary,String mood,int years,int []experticia){
 
 		Employee findEmployee=findEmployee(id);
 		String message="";
@@ -595,11 +596,7 @@ public class Club{
 				Assistant employeeAssistant=(Assistant)findEmployee;
 				employeeAssistant.setExperienceYears(years);
 
-
-				ArrayList<Experticia> experticias= new ArrayList<Experticia>();
-
-				String add="";
-				String message="Se ha contratado el entrenador exitosamente";
+				ArrayList<Experticia> experticias= new ArrayList<Experticia>();				
 
 				for (int i=0;i<experticia.length;i++){
 					switch (experticia[i]){
