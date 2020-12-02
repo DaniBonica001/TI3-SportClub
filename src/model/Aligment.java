@@ -69,7 +69,15 @@ public class Aligment{
 		return formation;
 	}
 
-
+	/**
+	* <b>Name: locateLineUp</b><br>
+	* This method allows to locate the soccer players on the court according the line up created. <br> 
+	* <b>Post: </b>The players have been located on the court. <br>
+	* @param frills int. Amount of frills on the court. frills mayor o =0 Y frills menor o=7.<br>
+	* @param forwards int. Amount of forwards on the court. forwards mayor o =0 Y forwards menor o =7.<br>
+	* @param defenses int. Amount of defenses on the court. defenses mayor o =0 Y defenses menor o =7.<br>
+	* @return message String. Message that show the matrix with the line up of the players.
+	*/
 	public String locateLineUp(int frills, int forwards, int defenses){
 		String message="";
 		boolean exit=false;

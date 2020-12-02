@@ -43,6 +43,12 @@ public class Player extends Employee implements Price{
 		return position;
 	}
 
+	/**
+	* <b>Name: calculateMarketPrice</b><br>
+	* This method is to calculate the market price of a soccer player.<br>
+	* <b>Pre: </b>The player object must already be created. player!=null.<br>
+	* <b>Post: </b>The market price of a soccer player has been calculated.
+	*/
 	public double calculateMarketPrice(){
 		double salary=getSalary();
 		double price=0;
@@ -58,9 +64,14 @@ public class Player extends Employee implements Price{
 		}
 
 		return price;
-
-
 	}
+
+	/**
+	* <b>Name: calculateStarsLevel</b><br>
+	* This method is to calculate the stars level of a soccer player.<br>
+	* <b>Pre: </b>The player object must already be created. player!=null.<br>
+	* <b>Post: </b>The stars level of a soccer player has been calculated.
+	*/
 	public double calculateStarsLevel(){
 		double level=0;
 
@@ -77,6 +88,12 @@ public class Player extends Employee implements Price{
 		return level;
 	}
 
+	/**
+	* <b>Name: toString</b><br>
+	* This method allows to show all the information of a soccer player.<br>
+	* <b>Pre: </b> The player object must already be created.player!=null.<br>
+	* <b> Post: </b> The information of the player will be shown according to the format created.
+	*/
 	public String toString(){
 		String message="";
 		double level=calculateStarsLevel();

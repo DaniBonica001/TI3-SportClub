@@ -41,6 +41,15 @@ public class Team{
 		return headCoach;
 	}
 
+	/**
+	* <b>Name: findPlayer</b><br>
+	* This method allows to seek a player. This method is to avoid that a player will be created twice.<br>
+	* <b>Pre: </b>The players array must be initialized. players!=null<br>
+	* <b>Post: </b>The player was or wasn't found successfully.<br>
+	* @param id String. Identification of the soccer player. id!="".<br>
+	* @return find Player. If the method find the soccer player, it will return it because you can't create the same player twice.<br>
+	* But, if the method doesn't find the soccer player, it wouldn't return anything, it would be null and you can create the soccer player.
+	*/
 	public Player findPlayer(String id){
 		Player find=null;
 		boolean exit=false;
@@ -51,10 +60,18 @@ public class Team{
 			}
 						
 		}
-	return find;
+		return find;
 	}
 
-
+	/**
+	* <b>Name: findAssistant</b><br>
+	* This method allows to seek an assistant. This method is to avoid that an assistant will be created twice.<br>
+	* <b>Pre: </b>The assistants array must be initialized. assistants!=null<br>
+	* <b>Post: </b>The assistant was or wasn't found successfully.<br>
+	* @param id String. Identification of the assistant. id!="".<br>
+	* @return find Assistant. If the method find the assistant, it will return it because you can't create the same assistant twice.<br>
+	* But, if the method doesn't find the assistant, it wouldn't return anything, it would be null and you can create the assistant.
+	*/
 	public Assistant findAssistant(String id){
 		Assistant find=null;
 		boolean exit=false;
@@ -65,10 +82,17 @@ public class Team{
 			}
 						
 		}
-	return find;
+		return find;
 	}
 
-
+	/**
+	* <b>Name: addEmployee</b><br>
+	* This method add a soccer player to the players array.<br>
+	* <b>Pre: </b>The players array must be created.<br>
+	* <b>Post: </b>The player has been added to the team.<br>
+	* @param newPlayer Player. It's a player object. newPlayer!=null.<br>
+	* @return message String. Message that confirm or deny if the player was or wasn't added to the team.
+	*/
 	public String addEmployee(Player newPlayer){
 		Player findPlayer=findPlayer(newPlayer.getId());
 		boolean exit=false;
@@ -91,9 +115,17 @@ public class Team{
 		}else{
 			message="Error. El jugador ya esta en el equipo";
 		}
-	return message;
+		return message;
 	}
 
+	/**
+	* <b>Name: addEmployee</b><br>
+	* This method add an assistant to the assistants array.<br>
+	* <b>Pre: </b>The assistants array must be created.<br>
+	* <b>Post: </b>The assistant has been added to the team.<br>
+	* @param newAssistant Assistant. It's an assistant object. newAssistant!=null.<br>
+	* @return message String. Message that confirm or deny if the assistant was or wasn't added to the team.
+	*/
 	public String addEmployee(Assistant newAssistant){
 		Assistant findAssistant= findAssistant(newAssistant.getId());
 		boolean exit=false;
@@ -117,10 +149,17 @@ public class Team{
 			message="Error. El asistente ya esta en el equipo";
 		}
 
-	return message;
+		return message;
 	}
 
-
+	/**
+	* <b>Name: firePlayer</b><br>
+	* This method allows to take off a player of a team. <br>
+	* <b>Pre: </b>The players array must be created.<br>
+	* <b>Post: </b>The player has been fired and taken off the team.<br>
+	* @param player Player.It's a player object.player!=null<br>
+	* @return message String. Message that confirm or deny if the player has been fired.
+	*/
 	public String firePlayer(Player player){
 		String message="";
 		boolean exit=false;
@@ -137,9 +176,16 @@ public class Team{
 		}
 
 		return message;
-
 	}
 
+	/**
+	* <b>Name: fireAssistant</b><br>
+	* This method allows to take off an assistant of a team. <br>
+	* <b>Pre: </b>The assistants array must be created.<br>
+	* <b>Post: </b>The assistant has been fired and taken off the team.<br>
+	* @param assistant Assistant.It's an assistant object.assistant!=null<br>
+	* @return message String. Message that confirm or deny if the assistant has been fired.
+	*/
 	public String fireAssistant(Assistant assistant){
 		String message="";
 		boolean exit=false;
@@ -157,6 +203,13 @@ public class Team{
 		return message;
 	}
 
+	/**
+	* <b>Name: locatePlayers1</b><br>
+	* This method allows to locate the players of the teamA in the locker room.<br>
+	* <b>Pre: </b>The players array must be created.<br>
+	* <b>Post: </b>The players of the teamA have been located in the locker room.<br>
+	* @return message String. Message that show the matriz with the players located in the locker room.
+	*/
 	public String locatePlayers1(){
 		String message="";
 		boolean exit=false;
@@ -218,7 +271,13 @@ public class Team{
 		return message+" Y "+names;
 	}
 
-
+	/**
+	* <b>Name: locatePlayers1</b><br>
+	* This method allows to locate the players of the teamB in the locker room.<br>
+	* <b>Pre: </b>The players array must be created.<br>
+	* <b>Post: </b>The players of the teamB have been located in the locker room.<br>
+	* @return message String. Message that show the matriz with the players located in the locker room.
+	*/
 	public String locatePlayers2(){
 		String message="";
 		boolean exit=false;
@@ -272,7 +331,15 @@ public class Team{
 		return message;
 	}
 
-
+	/**
+	* <b>Name: findAligment</b><br>
+	* This method seeks an aligment because you can't create the same aligment twice.<br>
+	* <b>Pre: </b>The lineups ArrayList must be initialized.lineups!=null<br>
+	* <b>Post: </b>The aligment was or wasn't found.<br>
+	* @param date String. Date of the lineup. date!=""<br>
+	* @return index int. If the method return -1 is due to the aligment wasn't found.<br>
+	* But, if the method return another number, is because the aligment has already be created.
+	*/
 	public int findAligment(String date){
 		int index=-1;
 
@@ -284,6 +351,17 @@ public class Team{
 		return index;
 	}
 
+	/**
+	* <b>Name: addLineUps</b><br>
+	* This method allows to add a new lineup for a team.<br>
+	* <b>Post: </b>The new lineup has been created and added to the lineups ArrayList of a team .<br>
+	* @param date String. Date of the lineup. date!=""<br>
+	* @param frills int. Amount of frills.<br>
+	* @param forwards int. Amount of forwards.<br>
+	* @param defenses int. Amount of defenses.<br>
+	* @param tactic int. Number of the tactic chose.<br>
+	* @return message String. Message that show the matrix with the players of a team in a locker room.
+	*/
 	public String addLineUps(String date, int frills, int forwards, int defenses, int tactic){
 		String message="Fecha: "+date;
 
@@ -305,6 +383,13 @@ public class Team{
 		return message;
 	}
 
+	/**
+	* <b>Name: seeAllLineUps</b><br>
+	* This method show all the lineups of the team.<br>
+	* <b>Pre: </b>The team must be cretaed.<br>
+	* <b>Post: </b>All the lineups of the team has been shown.<br>
+	* @return message String. Message that show all the lineups and its matrixs of the team.
+	*/
 	public String seeAllLineUps(){
 		String message="";
 
@@ -329,6 +414,12 @@ public class Team{
 		return message;
 	}
 	
+	/**
+	* <b>Name: toString</b><br>
+	* This method allows to show all the information of a team.<br>
+	* <b>Pre: </b> The team must already be created. <br>
+	* <b> Post: </b> The information of the team will be shown according to the format created.
+	*/
 	public String toString(){
 		String message1="";
 		String message2="";
@@ -359,7 +450,6 @@ public class Team{
 				"\n**Jugadores: "+message1+
 				"\n**Asistentes: "+message2+
 				"\n****************************";
-
 	}
 
 

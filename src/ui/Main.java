@@ -110,6 +110,11 @@ public class Main{
 		}		
 	}
 
+	/**
+	* <b>Name: createClub</b><br>
+	* This method allows you to fill out the information of the sport club and create the object objClub.<br>
+	* <b>Post: </b>The object objClub has been created.<br>
+	*/
 	public static void createClub(){
 		System.out.println("Ingrese el nombre del club");
 		String name= lector.nextLine();
@@ -123,6 +128,12 @@ public class Main{
 		objClub= new Club(name,nit,date);
 	}
 
+	/**
+	* <b>Name: hireEmployee</b><br>
+	* This method allows you to hire an employee who can be a soccer player, a main coach or and assistant.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b>The user has been created, hired and added to a team.<br>
+	*/
 	public static void hireEmployee(){
 		System.out.println("Ingrese el nombre del nuevo empleado");
 		String name= lector.nextLine();
@@ -264,7 +275,12 @@ public class Main{
 		}
 	}
 
-
+	/**
+	* <b>Name:fireEmployee</b><br>
+	* This method allows you to fire an employee without care if is a soccer player, a main coah or an assistant.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b>The employee has been fired and taken form his team.<br>
+	*/
 	public static void fireEmployee(){
 		System.out.println("Ingrese el nombre del empleado que sera despedido");
 		String name= lector.nextLine();
@@ -283,6 +299,12 @@ public class Main{
 		System.out.println(message);
 	}
 
+	/**
+	* <b>Name: locatePlayers</b><br>
+	* This method asks you which players of a team you want to locate in a locker room.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b> The soccer players of a team has been located in a locker room.<br>
+	*/
 	public static void locatePlayers(){
 		System.out.println("Ingrese que equipo quiere ubicar en los vestidores"+
 							"\n1.EquipoA"+
@@ -294,11 +316,14 @@ public class Main{
 		String message="";
 		message=objClub.locatePlayers(team);
 		System.out.println(message);
-
-
 	}
 
-
+	/**
+	* <b>Name: calculatePrice</b><br>
+	* This method asks you if you want to calculate the market price of a soccer player or a main coach<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b> The market price of a soccer player or of a main coach will be calculated<br>
+	*/
 	public static void calculatePrice(){
 		String message="";
 		System.out.println("Seleccione una opcion"+
@@ -321,9 +346,14 @@ public class Main{
 			System.out.println(message);
 			break;
 		}		
-		
 	}
 
+	/**
+	* <b>Name: calculateLevel</b><br>
+	* This method asks you if you want to calculate the stars level of a soccer player or a main coach.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b>The stars level of a soccer player or of a main coach will be calculated<br>
+	*/
 	public static void calculateLevel(){
 		String message="";
 		System.out.println("Seleccione una opcion"+
@@ -345,11 +375,15 @@ public class Main{
 			message=objClub.calculateLevelCoach(id);
 			System.out.println(message);
 			break;
-		}		
-		
+		}				
 	}
 
-
+	/**
+	* <b>Name: addLineUps</b><br>
+	* This method allows to create a line up for a team with all the necessary information.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b>The line up will be added to a team's list line ups<br>
+	*/
 	public static void addLineUps(){
 		System.out.println("Ingrese a que equipo quiere agregar una alineacion"+
 							"\n1.EquipoA"+
@@ -383,9 +417,14 @@ public class Main{
 		String message="";
 		message=objClub.addLineUps(team,date,frills,forwards,defenses,tactic);
 		System.out.println(message);
-
 	}
 
+	/**
+	* <b>Name: seeAllLienUps</b><br>
+	* This method asks you if you want to see all the line ups of a team.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b> All the line ups of a team will be shown.<br>
+	*/
 	public static void seeAllLineUps(){
 		System.out.println("Ingrese que equipo quiere ver todas sus alineaciones"+
 							"\n1.EquipoA"+
@@ -396,10 +435,14 @@ public class Main{
 		String message="";
 		message=objClub.seeAllLineUps(team);
 		System.out.println(message);
-
 	}
 
-
+	/**
+	* <b>Name: uploadEmployeeInformation</b><br>
+	* This method asks all the new information of an employee to upload it.<br>
+	* <b>Pre: </b>The objClub object must already be created. objClub!=null.<br>
+	* <b>Post: </b>The new information of an employee will be uploaded.<br>
+	*/
 	public static void uploadEmployeeInformation(){
 		String message="";
 

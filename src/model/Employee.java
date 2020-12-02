@@ -43,6 +43,12 @@ public abstract class Employee{
 		return mood;
 	}
 
+	/**
+	* <b>Name: toString</b><br>
+	* This method allows to show all the information of an employee.<br>
+	* <b>Pre: </b> The employee must already be created. <br>
+	* <b> Post: </b> The information of the user will be shown according to the format created.
+	*/
 	public String toString(){
 		return "\n****************************"+
 				"\n**Nombre: "+name+

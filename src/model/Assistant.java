@@ -26,6 +26,12 @@ public class Assistant extends Coach{
 		return experticia;
 	}
 
+	/**
+	* <b>Name: toString</b><br>
+	* This method allows to show all the information of an assistant.<br>
+	* <b>Pre: </b> The assistant must already be created. <br>
+	* <b> Post: </b> The information of the assistant will be shown according to the format created.
+	*/
 	public String toString(){
 		boolean exit=false;
 		String message="";
